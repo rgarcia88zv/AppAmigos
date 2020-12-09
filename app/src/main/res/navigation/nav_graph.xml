@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/amigosListFragment">
+
+    <fragment
+        android:id="@+id/amigosListFragment"
+        android:name="com.example.appamigos.fragments.AmigosListFragment"
+        android:label="fragment_amigos_list"
+        tools:layout="@layout/fragment_amigos_list" >
+        <action
+            android:id="@+id/action_amigosListFragment_to_importarFragment"
+            app:destination="@id/importarFragment" />
+        <action
+            android:id="@+id/action_amigosListFragment_to_editarFragment"
+            app:destination="@id/editarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/importarFragment"
+        android:name="com.example.appamigos.fragments.ImportarFragment"
+        android:label="fragment_importar"
+        tools:layout="@layout/fragment_importar" >
+        <action
+            android:id="@+id/action_importarFragment_to_amigosListFragment"
+            app:destination="@id/amigosListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarFragment"
+        android:name="com.example.appamigos.fragments.EditarFragment"
+        android:label="fragment_editar"
+        tools:layout="@layout/fragment_editar" >
+        <action
+            android:id="@+id/action_editarFragment_to_amigosListFragment"
+            app:destination="@id/amigosListFragment" />
+    </fragment>
+</navigation>
