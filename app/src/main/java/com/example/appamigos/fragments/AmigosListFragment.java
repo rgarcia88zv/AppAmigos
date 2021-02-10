@@ -40,15 +40,16 @@ public class AmigosListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_amigos_list, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        comprobarNumLlamadas();
-        viewModelActivity = new ViewModelProvider(getActivity()).get(ViewModelActivity.class);
 
+        viewModelActivity = new ViewModelProvider(getActivity()).get(ViewModelActivity.class);
         recyclerView = view.findViewById(R.id.recycler_amigos);
         adapter = new AmigosAdapter(getContext(),amigos);
         recyclerView.setAdapter(adapter);
@@ -62,6 +63,7 @@ public class AmigosListFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+        comprobarNumLlamadas();
 
 
         init();

@@ -1,4 +1,4 @@
-package com.example.appamigos;
+package com.example.appamigos.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,7 +13,6 @@ import java.util.List;
 
 public class LlamadasReceiver extends BroadcastReceiver {
     Repository repository;
-    List<Amigo> listaAmigos;
     String numero;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -21,7 +20,7 @@ public class LlamadasReceiver extends BroadcastReceiver {
 
         if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
             numero = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                Log.v("numero",numero);
+
                 repository.insertLlamada(numero);
         }
 

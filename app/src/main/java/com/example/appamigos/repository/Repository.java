@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appamigos.dao.AmigoDao;
 import com.example.appamigos.dao.LlamadaDao;
@@ -12,8 +14,10 @@ import com.example.appamigos.database.AmigoDatabase;
 import com.example.appamigos.pojo.Amigo;
 import com.example.appamigos.pojo.Llamada;
 import com.example.appamigos.util.UtilThread;
+import com.example.appamigos.viewmodel.ViewModelActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,6 +34,8 @@ public class Repository {
 
     private LiveData<List<Llamada>> liveLlamadaList;
     private MutableLiveData<Long> liveLlamadaInsertId = new MutableLiveData<>();
+
+    private List<Amigo> amigos = new ArrayList<>();
 
     public Repository(Context context){
         AmigoDatabase db = AmigoDatabase.getDb(context);
@@ -126,10 +132,10 @@ public class Repository {
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat df = new SimpleDateFormat(format);
                     String now = df.format(calendar.getTime());
-
                     Llamada llamada = new Llamada(idAmigo,now);
                     Log.v("llamada",llamada.toString());
                     llamadaDao.insert(llamada);
+
                     Log.v("xyz", "Insertado");
                 } catch (Exception e) {
                     e.getMessage();

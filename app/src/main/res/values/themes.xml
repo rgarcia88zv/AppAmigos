@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AppAmigos" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.AppAmigos" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#DCE6AD</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

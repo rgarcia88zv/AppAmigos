@@ -44,7 +44,7 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
     holder.tvNombre.setText(misAmigos.get(position).getNombre());
     holder.tvTelf.setText(misAmigos.get(position).getTelf());
     holder.tvFecNac.setText(misAmigos.get(position).getFecNac());
-    holder.tvNumLlamadas.setText(String.valueOf(misAmigos.get(position).getNumLlamadas()));
+   // holder.tvNumLlamadas.setText(String.valueOf(misAmigos.get(position).getNumLlamadas()));
     holder.parent_layout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -75,7 +75,6 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
             tvNombre = itemView.findViewById(R.id.tvNombreA);
             tvTelf = itemView.findViewById(R.id.tvTelfA);
             tvFecNac = itemView.findViewById(R.id.tvFechaA);
-            tvNumLlamadas = itemView.findViewById(R.id.tvLlamadasA);
             parent_layout = itemView.findViewById(R.id.parent_layout);
         }
     }

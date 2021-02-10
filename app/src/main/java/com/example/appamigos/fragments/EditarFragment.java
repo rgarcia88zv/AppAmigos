@@ -19,7 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appamigos.R;
+import com.example.appamigos.dao.LlamadaDao;
 import com.example.appamigos.pojo.Amigo;
+import com.example.appamigos.pojo.Llamada;
 import com.example.appamigos.viewmodel.ViewModelActivity;
 
 import java.util.ArrayList;
@@ -29,6 +31,12 @@ public class EditarFragment extends Fragment {
    private Amigo amigo;
     private ViewModelActivity viewModelActivity;
     List<Amigo> listaAmigos;
+    List<Llamada> listaLlamadas;
+    int llamadasC=0;
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +50,7 @@ public class EditarFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModelActivity = new ViewModelProvider(getActivity()).get(ViewModelActivity.class);
         listaAmigos = new ArrayList<>();
+        listaLlamadas = new ArrayList<>();
         amigo = (Amigo) getArguments().getSerializable("amigo");
 
         EditText etNombre = view.findViewById(R.id.etNombre);
@@ -52,7 +61,27 @@ public class EditarFragment extends Fragment {
         etNombre.setText(amigo.getNombre());
         etTelf.setText(amigo.getTelf());
         etFechaNac.setText(amigo.getFecNac());
-        tvNumLlamadas.setText("Numero de llamadas recibidas: " + String.valueOf(amigo.getNumLlamadas()));
+
+        viewModelActivity.getLiveLlamadaList().observe(getActivity(), new Observer<List<Llamada>>() {
+            @Override
+            public void onChanged(List<Llamada> llamadas) {
+
+                listaLlamadas.clear();
+                listaLlamadas.addAll(llamadas);
+
+                for (int i = 0; i <listaLlamadas.size() ; i++) {
+                    if(listaLlamadas.get(i).getIdAmigo()==amigo.getId()){
+                        llamadasC++;
+
+                    }
+
+                }
+            }
+        });
+
+
+        tvNumLlamadas.setText("Numero de llamadas: " + llamadasC);
+
 
         viewModelActivity.getLiveAmigoList().observe(getActivity(), new Observer<List<Amigo>>() {
             @Override
@@ -61,6 +90,11 @@ public class EditarFragment extends Fragment {
                 listaAmigos.addAll(amigos);
             }
         });
+
+
+
+
+
 
         Button btBorrar = view.findViewById(R.id.btBorrar);
         btBorrar.setOnClickListener(new View.OnClickListener() {

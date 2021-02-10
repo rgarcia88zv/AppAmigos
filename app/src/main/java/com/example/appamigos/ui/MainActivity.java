@@ -20,14 +20,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         obtenerPermisos();
-        comprobarPermisoContactos();
     }
 
     private void obtenerPermisos() {
 
         int permisoContactos = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_CONTACTS);
         int permisoLog = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_CALL_LOG);
-        int permisoLlamadas = ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE);
 
         if (permisoContactos != PackageManager.PERMISSION_GRANTED || permisoLog != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -37,13 +35,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void comprobarPermisoContactos() {
-        int result = PackageManager.PERMISSION_GRANTED;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            result = checkSelfPermission(Manifest.permission.READ_CONTACTS);
-        }
-
-    }
 
 
     @Override
