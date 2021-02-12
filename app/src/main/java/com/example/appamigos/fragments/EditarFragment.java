@@ -34,10 +34,6 @@ public class EditarFragment extends Fragment {
     List<Llamada> listaLlamadas;
     int llamadasC=0;
 
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,7 +61,7 @@ public class EditarFragment extends Fragment {
         viewModelActivity.getLiveLlamadaList().observe(getActivity(), new Observer<List<Llamada>>() {
             @Override
             public void onChanged(List<Llamada> llamadas) {
-
+                llamadasC = 0;
                 listaLlamadas.clear();
                 listaLlamadas.addAll(llamadas);
 
@@ -76,11 +72,12 @@ public class EditarFragment extends Fragment {
                     }
 
                 }
+                tvNumLlamadas.setText("Numero de llamadas: " + llamadasC);
             }
         });
 
 
-        tvNumLlamadas.setText("Numero de llamadas: " + llamadasC);
+
 
 
         viewModelActivity.getLiveAmigoList().observe(getActivity(), new Observer<List<Amigo>>() {
